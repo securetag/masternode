@@ -9,7 +9,7 @@ BINARY_CLI_FILE="securetag-cli"
 BINARY_PATH="/usr/local/bin/${BINARY_FILE}"
 DIR_COIN=".securetag"
 CONFIG_FILE="securetag.conf"
-DEFULT_PORT=12911
+DEFULT_PORT=12919
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -97,7 +97,7 @@ function compile_server() {
 }
 
 function ask_user() {
-	  DEFAULT_USER="worker01"
+	  DEFAULT_USER="STGMN"
 	  read -p "${NAME_COIN} user: " -i $DEFAULT_USER -e WORKER
 	  : ${WORKER:=$DEFAULT_USER}
 
