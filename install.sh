@@ -124,7 +124,7 @@ function check_port() {
 	  PORTS=($(netstat -tnlp | awk '/LISTEN/ {print $4}' | awk -F":" '{print $NF}' | sort | uniq | tr '\r\n'  ' '))
 	  ask_port
 
-	  while [[ ${PORTS[@]} =~ $PORT_COIN ]] || [[ ${PORTS[@]} =~ $[PORT_COIN+1] ]]; do
+	  while [[ ${PORTS[@]} =~ $PORT_COIN ]]; do
 	    clear
 	    echo -e "${RED}Port in use, please choose another port:${NF}"
 	    ask_port
@@ -184,7 +184,6 @@ EOF
 function enable_firewall() {
   echo -e "Installing ${GREEN}fail2ban${NC} and setting up firewall to allow ingress on port ${GREEN}$PORT_COIN${NC}"
   ufw allow $PORT_COIN/tcp comment "${NAME_COIN} MN port" >/dev/null
-  ufw allow $[PORT_COIN+1]/tcp comment "${NAME_COIN} RPC port" >/dev/null
   ufw allow ssh >/dev/null 2>&1
   ufw limit ssh/tcp >/dev/null 2>&1
   ufw default allow outgoing >/dev/null 2>&1
@@ -241,6 +240,7 @@ function resumen() {
  echo -e "VPS_IP:PORT ${RED}$NODEIP:$PORT_COIN${NC}"
  echo -e "MASTERNODE PRIVATEKEY is: ${RED}$KEY_COIN${NC}"
  echo -e "================================================================================================================================"
+ echo -e "Please allow at least 5 minutes for node to sync before starting masternode on wallet."
 }
 
 function setup_node() {
