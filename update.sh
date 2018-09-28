@@ -67,7 +67,7 @@ function systemd_up() {
 
 function setup_node() {
         systemd_up
-
+exit 1
 }
 
 ######################################################
@@ -80,4 +80,3 @@ clear
   compile_server
   setup_node
 
-exit 0
