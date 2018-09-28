@@ -21,7 +21,7 @@ function prepare_system() {
         PHYMEM=$(free -g|awk '/^Mem:/{print $2}')
         if [ "$PHYMEM" -lt "2" ];
           then
-            echo -e "${GREEN}Server is running with less than 2G of RAM, creating 4G swap file.$$
+            echo -e "${GREEN}Server is running with less than 2G of RAM, creating 4G swap file."
             dd if=/dev/zero of=/swapfile bs=1024 count=4M
             chmod 600 /swapfile
             mkswap /swapfile
@@ -34,7 +34,6 @@ function prepare_system() {
 
 function compile_server() {
         echo -e "Clone git repo and compile it. This may take some time. Press a key to continue."
-        read -n 1 -s -r -p ""
 
         git clone $GIT_REPO $TMP_FOLDER
         cd $TMP_FOLDER
