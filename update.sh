@@ -41,7 +41,7 @@ function compile_server() {
         ./autogen.sh
         ./configure
         make
-
+}
 function systemd_up() {
 
   sleep 3
