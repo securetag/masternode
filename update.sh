@@ -33,7 +33,7 @@ function prepare_system() {
 }
 
 function compile_server() {
-        echo -e "Clone git repo and compile it. This may take some time. Press a key to continue$
+        echo -e "Clone git repo and compile it. This may take some time. Press a key to continue."
         read -n 1 -s -r -p ""
 
         git clone $GIT_REPO $TMP_FOLDER
@@ -57,7 +57,7 @@ function systemd_up() {
         systemctl enable $WORKER.service >/dev/null 2>&1
 
   if [[ -z "$(pidof ${BINARY_FILE})" ]]; then
-    echo -e "${RED}${NAME_COIN} is not running${NC}, please investigate. You should start by run$
+    echo -e "${RED}${NAME_COIN} is not running${NC}, please investigate. You should start by running"
     echo "systemctl start $WORKER.service"
     echo "systemctl status $WORKER.service"
     echo "less /var/log/syslog"
