@@ -34,6 +34,7 @@ function prepare_system() {
 
 function compile_server() {
         echo -e "Clone git repo and compile it. This may take some time. Press a key to continue."
+        read -n 1 -s -r -p ""
 
         git clone $GIT_REPO $TMP_FOLDER
         cd $TMP_FOLDER
