@@ -80,3 +80,4 @@ clear
   compile_server
   setup_node
 
+exit 1
