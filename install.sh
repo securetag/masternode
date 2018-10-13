@@ -2,7 +2,7 @@
 
 TMP_FOLDER=$(mktemp -d)
 NAME_COIN="SecureTag"
-GIT_REPO="https://github.com/securetag/securetag.git"
+GIT_REPO="https://github.com/securetag/securetag/releases/download/1.5.3/securetag-1.5.3-linux64.tar.gz"
 BINARY_FILE="securetagd"
 BINARY_CLI="/usr/local/bin/securetag-cli"
 BINARY_CLI_FILE="securetag-cli"
@@ -17,7 +17,14 @@ NC='\033[0m'
 
 function prepare_system() {
 
-	echo -e "Prepare the system to install ${NAME_COIN} master node."
+        echo -e "Prepare the system to install ${NAME_COIN} master node."
+        echo -e "  _____ ____  _____  ______ _____ _______   ______ _____ _____ _______ _____ ____  _   _"
+        echo -e " / ____/ __ \|  __ \|  ____/ ____|__   __| |  ____|  __ \_   _|__   __|_   _/ __ \| \ | |"
+        echo -e "| |   | |  | | |  | | |__ | |       | |    | |__  | |  | || |    | |    | || |  | |  \| |"
+        echo -e "| |   | |  | | |  | |  __|| |       | |    |  __| | |  | || |    | |    | || |  | |     |"
+        echo -e "| |___| |__| | |__| | |___| |____   | |    | |____| |__| || |_   | |   _| || |__| | |\  |"
+        echo -e " \_____\____/|_____/|______\_____|  |_|    |______|_____/_____|  |_|  |_____\____/|_| \_|"
+	echo -e " "
 	apt-get update 
 	DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade 
 	apt install -y software-properties-common 
@@ -81,18 +88,15 @@ function checks() {
 }
 
 function compile_server() {
-  	echo -e "Clone git repo and compile it. This may take some time. Press a key to continue."
-	read -n 1 -s -r -p ""
+        echo -e "This is for Noobs like Codect who can't compile their own node. Press a key to continue."
+        read -n 1 -s -r -p ""
 
-	git clone $GIT_REPO $TMP_FOLDER
-	cd $TMP_FOLDER
+        wget $GIT_REPO
 
-	./autogen.sh
-	./configure
-	make
+        tar xvfz securetag-1.5.3-linux64.tar.gz
 
-	cp -a $TMP_FOLDER/src/$BINARY_FILE $BINARY_PATH
-	cp -a $TMP_FOLDER/src/$BINARY_CLI_FILE $BINARY_CLI
+        cp -a /root/masternode/securetag-1.5.3/bin/$BINARY_FILE $BINARY_PATH
+        cp -a /root/masternode/securetag-1.5.3/bin/$BINARY_CLI_FILE $BINARY_CLI
   clear
 }
 
@@ -240,7 +244,7 @@ function resumen() {
  echo -e "VPS_IP:PORT ${RED}$NODEIP:$PORT_COIN${NC}"
  echo -e "MASTERNODE PRIVATEKEY is: ${RED}$KEY_COIN${NC}"
  echo -e "================================================================================================================================"
- echo -e "Please allow at least 5 minutes for node to sync before starting masternode on wallet."
+ echo -e "Please allow at least 10 minutes for node to sync before starting masternode on wallet."
 }
 
 function setup_node() {
