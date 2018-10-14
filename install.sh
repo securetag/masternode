@@ -18,12 +18,14 @@ NC='\033[0m'
 function prepare_system() {
 
         echo -e "Prepare the system to install ${NAME_COIN} master node."
-        echo -e "  _____ ____  _____  ______ _____ _______   ______ _____ _____ _______ _____ ____  _   _"
-        echo -e " / ____/ __ \|  __ \|  ____/ ____|__   __| |  ____|  __ \_   _|__   __|_   _/ __ \| \ | |"
-        echo -e "| |   | |  | | |  | | |__ | |       | |    | |__  | |  | || |    | |    | || |  | |  \| |"
-        echo -e "| |   | |  | | |  | |  __|| |       | |    |  __| | |  | || |    | |    | || |  | |     |"
-        echo -e "| |___| |__| | |__| | |___| |____   | |    | |____| |__| || |_   | |   _| || |__| | |\  |"
-        echo -e " \_____\____/|_____/|______\_____|  |_|    |______|_____/_____|  |_|  |_____\____/|_| \_|"
+	echo -e " "
+	echo -e "  _____ ______ _____ _    _ _____  ______ _______       _____ "
+	echo -e " / ____|  ____/ ____| |  | |  __ \|  ____|__   __|/\   / ____|"
+	echo -e "| (___ | |__ | |    | |  | | |__) | |__     | |  /  \ | |  __ "
+	echo -e " \___ \|  __|| |    | |  | |  _  /|  __|    | | / /\ \| | |_ |"
+	echo -e " ____) | |___| |____| |__| | | \ \| |____   | |/ ____ \ |__| |"
+	echo -e "|_____/|______\_____|\____/|_|  \_\______|  |_/_/    \_\_____|"
+	echo -e " "                                                               
 	echo -e " "
 	apt-get update 
 	DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade 
@@ -88,7 +90,7 @@ function checks() {
 }
 
 function compile_server() {
-        echo -e "This is for Noobs like Codect who can't compile their own node. Press a key to continue."
+        echo -e "This will download the compiled code. Press a key to continue."
         read -n 1 -s -r -p ""
 
         wget $GIT_REPO
