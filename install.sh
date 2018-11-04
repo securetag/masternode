@@ -160,7 +160,7 @@ EOF
 }
 
 function create_key() {
-	  echo -e "Enter your ${RED}Masternode Private Key${NC}. Leave it blank to generate a new ${RED}Masternode Private Key${NC} for you:"
+	  echo -e "Enter your ${RED}Masternode Private Key${NC}.:"
 	  read -e KEY_COIN
 	  if [[ -z "$KEY_COIN" ]]; then
 	  sudo -u $WORKER $BINARY_PATH -conf=$WORKER_FOLDER/$CONFIG_FILE -datadir=$WORKER_FOLDER
