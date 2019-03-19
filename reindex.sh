@@ -23,9 +23,13 @@ function systemd_reindex() {
   sleep 3
         echo "Deleting old info"
         rm -r ../../home/STGMN/.securetag/blocks
-        rm -r ../../home/STGMN/.securetag/backup
+        rm -r ../../home/STGMN/.securetag/backups
         rm -r ../../home/STGMN/.securetag/chainstate
+        rm -r ../../home/STGMN/.securetag/database
         rm ../../home/STGMN/.securetag/peers.dat
+        rm ../../home/STGMN/.securetag/mncache.dat
+        rm ../../home/STGMN/.securetag/mnpayments.dat
+        rm ../../home/STGMN/.securetag/netfulfilled.dat
         
   sleep 3
       echo "Reindexing....this will take awhile. Wait till IsSynced turns true then Ctrl-Z to exit and then start alias in wallet."
