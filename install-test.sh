@@ -167,7 +167,7 @@ then
 sudo cp $PWD/masternode/securetag_daemon_18_04/securetag* /usr/bin/  
 elif  [[ `lsb_release -rs` == "19.04" ]] 
 then
-sudo cp $PWD/masternode/securetag_daemon_19_04/securetag* /usr/bin/ 
+sudo cp $PWD/masternode/securetag_daemon_19.04/securetag* /usr/bin/ 
 fi
 sudo chmod 755 -R $PWD/masternode
 sudo chmod 755 /usr/bin/securetag*
