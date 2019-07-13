@@ -50,6 +50,18 @@ genkey=$1
 clear
 echo -e "${YELLOW}SecureTag Masternode Setup Script${NC}"
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
+echo -e "Prepare the system to install ${NAME_COIN} master node."
+	echo -e " "
+	echo -e "  _____ ______ _____ _    _ _____  ______ _______       _____ "
+	echo -e " / ____|  ____/ ____| |  | |  __ \|  ____|__   __|/\   / ____|"
+	echo -e "| (___ | |__ | |    | |  | | |__) | |__     | |  /  \ | |  __ "
+	echo -e " \___ \|  __|| |    | |  | |  _  /|  __|    | | / /\ \| | |_ |"
+	echo -e " ____) | |___| |____| |__| | | \ \| |____   | |/ ____ \ |__| |"
+	echo -e "|_____/|______\_____|\____/|_|  \_\______|  |_/_/    \_\_____|"
+	echo -e " "                                                               
+	echo -e " CODECT is a crazy beast"
+	echo -e " "
+
 sudo apt-get update -y
 
 
@@ -114,7 +126,7 @@ echo -e "${NC}"
 #Generating Random Password for securetagd JSON RPC
 rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-#Create 1GB swap file
+#Create 2GB swap file
 sudo  echo "export PATH=$PATH:/sbin" >> ~/.profile
 . ~/.profile
 
@@ -122,9 +134,9 @@ sudo  echo "export PATH=$PATH:/sbin" >> ~/.profile
 if  [[ $(sudo /sbin/swapon -s | wc -l) -gt 1 ]] ; then
     echo -e "${GREEN}Skipping disk swap configuration...${NC} \n"
 else
-    echo -e "${YELLOW}Creating 1GB disk swap file. \nThis may take a few minutes!${NC} \a"
+    echo -e "${YELLOW}Creating 2GB disk swap file. \nThis may take a few minutes!${NC} \a"
    
-    sudo fallocate -l 1G /swapfile
+    sudo fallocate -l 2G /swapfile
     sudo chmod 600 /swapfile
     sudo mkswap /swapfile
     sudo /sbin/swapon /swapfile
@@ -149,19 +161,19 @@ stop_daemon
 # Deploy binaries to /usr/bin
 if [[ `lsb_release -rs` == "16.04" ]] 
 then
-sudo cp $PWD/SecureTag_setup/securetag_daemon_16/securetag* /usr/bin/  
+sudo cp $PWD/masternode/securetag_daemon_16/securetag* /usr/bin/  
 elif  [[ `lsb_release -rs` == "18.04" ]] 
 then
-sudo cp $PWD/SecureTag_setup/securetag_daemon_18_04/securetag* /usr/bin/  
+sudo cp $PWD/masternode/securetag_daemon_18_04/securetag* /usr/bin/  
 elif  [[ `lsb_release -rs` == "19.04" ]] 
 then
-sudo cp $PWD/SecureTag_setup/securetag_daemon_19_04/zeon* /usr/bin/ 
+sudo cp $PWD/masternode/securetag_daemon_19_04/securetag* /usr/bin/ 
 fi
-sudo chmod 755 -R $PWD/SecureTag_Master_setup
+sudo chmod 755 -R $PWD/masternode
 sudo chmod 755 /usr/bin/securetag*
 
 # Deploy masternode monitoring script
-sudo cp $PWD/SecureTag_setup/nodemon.sh /usr/local/bin
+sudo cp $PWD/masternode/nodemon.sh /usr/local/bin
 sudo chmod 711 /usr/local/bin/nodemon.sh
 
 #Create SecureTag datadir
@@ -235,12 +247,12 @@ Masternode Private Key: ${YELLOW}$genkey${NC}
 Now you can add the following string to the masternode.conf file
 for your Hot Wallet (the wallet with your SecureTag collateral funds):
 ======================================================================== \a"
-echo -e "${YELLOW}Alice $public_ip:$PORT $genkey txhash outputidx${NC}"
+echo -e "${YELLOW}Alias $public_ip:$PORT $genkey txhash outputidx${NC}"
 echo -e "========================================================================
 Use your mouse to copy the whole string above into the clipboard by
-tripple-click + single-click (Dont use Ctrl-C) and then paste it 
+triple-click + single-click (Dont use Ctrl-C) and then paste it 
 into your ${YELLOW}masternode.conf${NC} file and replace:
-    ${YELLOW}Alice${NC} - with your desired masternode name (alias)
+    ${YELLOW}Alias${NC} - with your desired masternode name (alias)
     ${YELLOW}txhash${NC} - with Transaction Id from masternode outputs
     ${YELLOW}outputidx${NC} - with Transaction Index (0 or 1)
      Remember to save the masternode.conf and restart the wallet!
@@ -253,7 +265,7 @@ read -p "*** Press any key to continue ***" -n1 -s
 
 echo -e "1) Wait for the node wallet on this VPS to sync with the other nodes
 on the network. Eventually the 'IsSynced' status will change
-to 'true', which will indicate a comlete sync, although it may take
+to 'true', which will indicate a complete sync, although it may take
 from several minutes to several hours depending on the network state.
 Your initial Masternode Status may read:
     ${YELLOW}Node just started, not yet activated${NC} or
@@ -261,8 +273,8 @@ Your initial Masternode Status may read:
 2) Wait at least until 'IsBlockchainSynced' status becomes 'true'.
 At this point you can go to your wallet and issue a start
 command by either using Debug Console:
-    Tools->Debug Console-> enter: ${YELLOW}startmasternode alias false Alice${NC}
-    where ${YELLOW}Alice${NC} is the name of your masternode (alias)
+    Tools->Debug Console-> enter: ${YELLOW}startmasternode alias false alias${NC}
+    where ${YELLOW}alias${NC} is the name of your masternode (alias)
     as it was entered in the masternode.conf file
     
 or by using wallet GUI:
