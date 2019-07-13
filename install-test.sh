@@ -1,5 +1,5 @@
 #!/bin/bash
-# SecureTag Masternode Setup Script for Ubuntu 16.04 ,18.04 and 18.10 LTS
+# SecureTag Masternode Setup Script for Ubuntu 16.04 ,18.04 and 19.04 LTS
 # Script will attempt to autodetect primary public IPV4 address
 # and generate masternode private key unless specified in command line
 #
@@ -7,7 +7,7 @@
 # bash install.sh [Masternode_Private_Key]
 #
 # Example 1: Existing genkey created earlier is supplied
-# bash install.sh 8qGKimjuDqF7aNAsMM8MVVKyhZuUPsuRSwh8fGGTneHpJaDdqoq
+# bash install.sh 8tJ5mkkarwdqMkSbwtHKKnypRnpggTBxNK2GjjguDz9fsEDJ2Ac
 #
 
 #Color codes
