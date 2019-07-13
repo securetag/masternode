@@ -320,7 +320,7 @@ ${YELLOW}nodemon.sh${NC}
 or just type 'node' and hit <TAB> to autocomplete script name.
 ========================================================================
 Enjoy your SecureTag Masternode and thanks for using this setup script!
-
+"
 # Run nodemon.sh
 # nodemon.sh
 
