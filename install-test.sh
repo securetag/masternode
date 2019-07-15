@@ -215,14 +215,15 @@ sudo tee <<EOF  $PWD/.securetag/securetag.conf  >/dev/null
 rpcuser=securetagrpc
 rpcpassword=$rpcpassword
 rpcallowip=127.0.0.1
-rpcport=12919
+port=12919
 listen=1
 server=1
 daemon=1
-maxconnections=64
+maxconnections=256
 externalip=$public_ip
 masternode=1
 masternodeprivkey=$genkey
+addnode=207.246.89.11
 EOF
 
 #Finally, starting SecureTag daemon with new securetag.conf
