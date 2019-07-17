@@ -59,7 +59,7 @@ echo -e "Prepare the system to install ${NAME_COIN} master node."
 	echo -e " ____) | |___| |____| |__| | | \ \| |____   | |/ ____ \ |__| |"
 	echo -e "|_____/|______\_____|\____/|_|  \_\______|  |_/_/    \_\_____|"
 	echo -e " "                                                               
-	echo -e " CODECT is a crazy beast"
+	echo -e " CODECT is a B*tch"
 	echo -e " "
 
 sudo apt-get update -y
@@ -227,19 +227,29 @@ addnode=207.246.89.11
 EOF
 
 #Finally, starting SecureTag daemon with new securetag.conf
-sudo securetagd
+sudo securetagd -daemon
 delay 5
+#Install Sentinel
+cd /root/.securetag
+sudo apt-get install -y git python-virtualenv
+sudo git clone https://github.com/securetag/sentinel.git
+cd sentinel
+export LC_ALL=C
+sudo apt-get install -y virtualenv
+virtualenv venv
+venv/bin/pip install -r requirements.txt
 
 #Setting auto star cron job for securetagd
-cronjob="@reboot sleep 30 && securetagd"
-crontab -l > tempcron
-if ! grep -q "$cronjob" tempcron; then
+#cronjob="@reboot sleep 30 && securetagd"
+#crontab -l > tempcron
+#if ! grep -q "$cronjob" tempcron; then
     echo -e "${GREEN}Configuring crontab job...${NC}"
-    echo $cronjob >> tempcron
-    crontab tempcron
-fi
-sudo rm tempcron
-
+#    echo $cronjob >> tempcron
+#    crontab tempcron
+#fi
+#sudo rm tempcron
+ (crontab -l 2>/dev/null; echo '@reboot sleep 30 && cd /usr/bin/securetagd -daemon -shrinkdebugfile') | crontab
+    (crontab -l 2>/dev/null; echo '* * * * * cd /root/.dinerocore/sentinel && ./venv/bin/python bin/sentinel.py >/$') | crontab
 echo -e "========================================================================
 ${YELLOW}Masternode setup is complete!${NC}
 ========================================================================
