@@ -161,7 +161,7 @@ stop_daemon
 # Deploy binaries to /usr/bin
 if [[ `lsb_release -rs` == "16.04" ]] 
 then
-sudo cp $PWD/masternode/securetag_daemon_16/securetag* /usr/bin/  
+sudo cp $PWD/masternode/securetag_daemon_16_04/securetag* /usr/bin/  
 elif  [[ `lsb_release -rs` == "18.04" ]] 
 then
 sudo cp $PWD/masternode/securetag_daemon_18_04/securetag* /usr/bin/  
