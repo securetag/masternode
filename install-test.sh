@@ -249,7 +249,7 @@ venv/bin/pip install -r requirements.txt
 #fi
 #sudo rm tempcron
  (crontab -l 2>/dev/null; echo '@reboot sleep 30 && cd /usr/bin/securetagd -daemon -shrinkdebugfile') | crontab
-    (crontab -l 2>/dev/null; echo '* * * * * cd /root/.dinerocore/sentinel && ./venv/bin/python bin/sentinel.py >/$') | crontab
+    (crontab -l 2>/dev/null; echo '* * * * * cd /root/.securetag/sentinel && ./venv/bin/python bin/sentinel.py >/$') | crontab
 echo -e "========================================================================
 ${YELLOW}Masternode setup is complete!${NC}
 ========================================================================
