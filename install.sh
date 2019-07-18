@@ -92,12 +92,12 @@ sudo apt-get -y install wget nano htop jq
 sudo apt-get -y install libzmq3-dev
 sudo apt-get -y install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
 sudo apt-get -y install libevent-dev
-
 sudo apt -y install software-properties-common
 
 if [[ $(lsb_release -rs) < "19.04" ]]; then
 sudo add-apt-repository ppa:bitcoin/bitcoin -y
 sudo apt-get -y update
+sudo apt-get install -y libsodium-dev
 sudo apt-get -y install libdb4.8-dev libdb4.8++-dev
 else
 sudo apt install -y libdb5.3-dev 
