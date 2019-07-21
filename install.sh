@@ -237,6 +237,7 @@ cd sentinel
 export LC_ALL=C
 sudo apt-get install -y virtualenv
 virtualenv venv
+. venv/bin/activate
 venv/bin/pip install -r requirements.txt
 
 #Setting auto star cron job for securetagd
