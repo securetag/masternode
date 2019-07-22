@@ -219,6 +219,7 @@ port=12919
 listen=1
 server=1
 daemon=1
+logtimestamps=1
 maxconnections=256
 externalip=$public_ip
 masternode=1
@@ -230,15 +231,15 @@ EOF
 sudo securetagd -daemon
 delay 5
 #Install Sentinel
-cd /root/.securetag
-sudo apt-get install -y git python-virtualenv
-sudo git clone https://github.com/securetag/sentinel.git
-cd sentinel
-export LC_ALL=C
-sudo apt-get install -y virtualenv
-virtualenv venv
-. venv/bin/activate
-venv/bin/pip install -r requirements.txt
+#cd /root/.securetag
+#sudo apt-get install -y git python-virtualenv
+#sudo git clone https://github.com/securetag/sentinel.git
+#cd sentinel
+#export LC_ALL=C
+#sudo apt-get install -y virtualenv
+#virtualenv venv
+#. venv/bin/activate
+#venv/bin/pip install -r requirements.txt
 
 #Setting auto star cron job for securetagd
 #cronjob="@reboot sleep 30 && securetagd"
@@ -250,7 +251,7 @@ venv/bin/pip install -r requirements.txt
 #fi
 #sudo rm tempcron
  (crontab -l 2>/dev/null; echo '@reboot sleep 30 && /usr/bin/securetagd -daemon -shrinkdebugfile') | crontab
-    (crontab -l 2>/dev/null; echo '* * * * * cd /root/.securetag/sentinel && ./venv/bin/python bin/sentinel.py >/$') | crontab
+#    (crontab -l 2>/dev/null; echo '* * * * * cd /root/.securetag/sentinel && ./venv/bin/python bin/sentinel.py >/$') | crontab
 echo -e "========================================================================
 ${YELLOW}Masternode setup is complete!${NC}
 ========================================================================
